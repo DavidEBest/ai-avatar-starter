@@ -7,6 +7,9 @@ const Home = () => {
   const maxRetries = 20;
   const [input, setInput] = useState('');
   const [img, setImg] = useState('');
+  const [medium, setMedium] = useState('');
+  const [vibe, setVibe] = useState('');
+  const [descriptor, setDescriptor] = useState('');
   const [retry, setRetry] = useState(0);
   const [retryCount, setRetryCount] = useState(maxRetries);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -15,6 +18,23 @@ const Home = () => {
   const onChange = (event) => {
     setInput(event.target.value);
   };
+
+  const onMediumChange = (event) => {
+    setMedium(event.target.value);
+  }
+
+  const onVibeChange = (event) => {
+    setVibe(event.target.value);
+  }
+
+  const onDescriptorChange = (event) => {
+    setDescriptor(event.target.value);
+  }
+
+  const applyOptions = async () => {
+    setInput(`portrait of dave, ${medium}, ${vibe}, ${descriptor}`);
+  };
+
   const generateAction = async () => {
     console.log("Generating...");
 
@@ -43,7 +63,6 @@ const Home = () => {
     const data = await response.json();
 
     if (response.status === 503) {
-      console.log("MODEL IS LOADING");
       setRetry(data.estimated_time);
       return;
     }
@@ -54,7 +73,6 @@ const Home = () => {
       return;
     }
     setFinalPrompt(input);
-    setInput('');
     setImg(data.image);
     setIsGenerating(false);
   };
@@ -91,12 +109,42 @@ const Home = () => {
       <div className="container">
         <div className="header">
           <div className="header-title">
-            <h1>davidebest generator</h1>
+            <h1>Dave's Vanity Avatar Generator</h1>
           </div>
           <div className="header-subtitle">
             <h2>Make me look like anyone.</h2>
           </div>
         </div>
+        <div className="prompt-options">
+          <input className="prompt-select" onChange={onMediumChange} value={medium} list="media" placeholder="Medium"/>
+          <datalist id="media">
+            <option value="Comic Book"/>
+            <option value="Renaisance Painting"/>
+            <option value="Soviet Poster"/>
+            <option value="Digital Painting"/>
+          </datalist>
+          <input className="prompt-select" onChange={onVibeChange} value={vibe} list="vibes" placeholder="Vibe"/>
+          <datalist id="vibes">
+            <option value="Science Fiction"/>
+            <option value="Psychedelic Visions"/>
+            <option value="Fantasy"/>
+          </datalist>
+          <input className="prompt-select" onChange={onDescriptorChange} value={descriptor} list="descriptors" placeholder="Descriptors"/>
+          <datalist id="descriptors">
+            <option value="Intricate"/>
+            <option value="Colorful"/>
+            <option value="Trending on Artstation"/>
+          </datalist>
+        </div>
+        <div className="prompt-buttons">
+            <a className='generate-button'
+               onClick={applyOptions}
+            >
+              <div className="generate">
+                <p>Apply</p>
+              </div>
+            </a>
+          </div>
         <div className="prompt-container">
           <input className="prompt-box" onChange={onChange} value={input} />
           <div className="prompt-buttons">

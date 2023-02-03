@@ -22,14 +22,13 @@ body {
 .container {
     display: flex;
     flex: 0 0 auto;
-    flex-flow: row nowrap;
-    gap: 10px;
-    /* height: fit-content; */
-    height: 100%;
+    flex-flow: column nowrap;
+    gap: 1rem;
+    height: fit-content;
+    /* height: 100%; */
     overflow: auto;
     position: relative;
     width: auto;
-    gap: 64px;
 }
 
 .header {
@@ -38,7 +37,8 @@ body {
     width: 100%;
     align-items: center;
     justify-content: center;
-    color: #FFF
+    color: #FFF;
+    margin-top: 3rem;
 }
 
 .header-title {
@@ -73,19 +73,19 @@ body {
     gap: 16px;
     height: min-content;
     padding: 0px;
-    width: min-content;
+    width: 100%;
 }
 
 .prompt-box {
     border-bottom-width: 1px;
-    border-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
     border-left-width: 1px;
     border-right-width: 1px;
     border-style: solid;
     border-top-width: 1px;
     place-content: flex-start;
     align-items: flex-start;
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: rgba(255, 255, 255, 0.25);
     border-radius: 16px;
     display: flex;
     flex: 0 0 auto;
@@ -100,7 +100,7 @@ body {
     overflow: auto;
     outline: none;
     resize: none;
-    font-size: 16px;
+    font-size: 24px;
     font-style: normal;
     letter-spacing: 0px;
     line-height: 1.6em;
@@ -114,6 +114,46 @@ body {
     font-family: 'Manrope', sans-serif;
 }
 
+.prompt-options {
+    justify-content: center;
+    display: flex;
+}
+
+.prompt-select {
+    border-bottom-width: 1px;
+    border-color: rgba(255, 255, 255, 0.3);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-style: solid;
+    border-top-width: 1px;
+    place-content: flex-start;
+    align-items: flex-start;
+    background-color: rgba(255, 255, 255, 0.25);
+    border-radius: 16px;
+    display: flex;
+    flex: 0 0 auto;
+    flex-flow: column nowrap;
+    gap: 10px;
+    overflow: hidden;
+    padding: 20px;
+    margin-left: .5rem;
+    margin-right: .5rem;
+    position: relative;
+    width: 300px;
+    max-width: 1200px;
+    will-change: transform;
+    overflow: auto;
+    outline: none;
+    resize: none;
+    font-size: 24px;
+    font-style: normal;
+    letter-spacing: 0px;
+    line-height: 1.6em;
+    text-align: start;
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+    text-transform: none;
+}
 
 .prompt-box:focus {
     border-color: rgba(255, 255, 255, 0.75)
@@ -124,7 +164,7 @@ body {
     display: flex;
     place-content: center;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     flex: 0 0 auto;
     flex-flow: row nowrap;
     gap: 12px;
@@ -238,10 +278,11 @@ body {
     width: 512px;
     height: 100%;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     flex-direction: column;
     flex-shrink: 0;
     transform: none;
+    padding-top: 3rem;
 }
 
 .output-content img {
